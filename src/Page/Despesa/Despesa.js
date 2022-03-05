@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import AppContext from '../../Context/AppContext';
+import React from 'react';
 import Formulario from '../../Componentes/Formulario/Formulario';
 import Tabela from '../../Componentes/Tabela/Tabela';
 

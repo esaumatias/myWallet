@@ -4,6 +4,7 @@ import { requestMoney } from '../Fetch/Fetch';
 
 function AppProvider({ children }) {
   const [currencie, setCurrencie] = useState('');
+  const [tableValues, setTableValues] = useState([]);
 
   useEffect(() => {
     requestMoney().then((data) => {
@@ -12,12 +13,13 @@ function AppProvider({ children }) {
     });
   }, [])
 
-  console.log(currencie);
   return (
     <AppContext.Provider
-      value={ {
+      value={{
         currencie,
         setCurrencie,
+        tableValues,
+        setTableValues,
       }}
     >
       { children }

@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
-import { Table, Row, Col, Container, Spinner } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
 
 function Tabela() {
+  const { tableValues } = useContext(AppContext);
   return (
     <Container>
       <Table striped bordered hover>
@@ -21,18 +22,20 @@ function Tabela() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+          {tableValues.map((value, index) => (
+            <tr key={index}>
+              <td>{value.id}</td>
+              <td>{value.descricao}</td>
+              <td>{value.tag}</td>
+              <td>{value.metodo}</td>
+              <td>{value.valor}</td>
+              <td>{value.moeda}</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Real</td>
+              <td>@mdo</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Container>

@@ -33,7 +33,14 @@ function Tabela() {
               <td>Otto</td>
               <td>@mdo</td>
               <td>Real</td>
-              <td>@mdo</td>
+              <td>
+                <button>
+                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt="Editar"/>
+                </button>
+                <button>
+                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt='botao excluir'/>
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

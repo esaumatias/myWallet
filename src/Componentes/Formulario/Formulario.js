@@ -3,28 +3,52 @@ import AppContext from '../../Context/AppContext';
 import { Form, Row, Col, Container, Spinner } from 'react-bootstrap';
 
 function Formulario() {
-  const { currencie, tableValues, setTableValues } = useContext(AppContext);
+  const {
+    currencie,
+    tableValues,
+    setTableValues,
+    valor,
+    setValor,
+    descricao,
+    setDescricao,
+    moeda,
+    setMoeda,
+    metodo,
+    setMetodo,
+    tag,
+    setTag,
+    buttonEdit,
+    setButtonEdit,
+    indexTable,
+    arrayIndex} = useContext(AppContext);
+  
   const pagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
-  const [valor, setValor] = useState('0');
-  const [descricao, setDescricao] = useState('');
-  const [moeda, setMoeda] = useState('USD');
-  const [metodo, setMetodo] = useState('Dinheiro');
-  const [tag, setTag] = useState('Alimentação');
-  const [id, setId] = useState(1);
 
   function setValueTable() {
-    setId(id + 1);
     const tableArray = {
       valor,
       descricao,
       moeda,
       metodo,
       tag,
-      id,
     };
     setTableValues([...tableValues, tableArray]);
+    setValor(0);
+    setDescricao('');
+    setMoeda('USD');
+    setMetodo('Dinheiro');
+    setTag('Alimentação');
   }
+
+  function editTable() {
+    setButtonEdit(!buttonEdit)
+    const values = tableValues.slice();
+    values[indexTable] = {valor, descricao, moeda, metodo, tag}
+    setTableValues(values);
+  }
+
+  console.log(indexTable);
 
   return (
     <section>
@@ -32,15 +56,15 @@ function Formulario() {
         <Form>
           <Row>
            <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setValor(target.value)}>
-              <Form.Control type="number" placeholder="Valor" />
+              <Form.Control type="number" placeholder="Valor" value={buttonEdit ? valor : null}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setDescricao(target.value)}>
-              <Form.Control type="text" placeholder="Descrição" />
+              <Form.Control type="text" placeholder="Descrição"  value={buttonEdit ? descricao : null}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMoeda(target.value)}>
-              <Form.Select>
+              <Form.Select value={buttonEdit ? moeda : null}>
                 {currencie ? (
                   currencie.map((value, index) =>(
                     <option key={ index }>{value}</option>
@@ -50,27 +74,27 @@ function Formulario() {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMetodo(target.value)}>
-              <Form.Select>
-                {pagamento ? (
-                  pagamento.map((value, index) =>(
-                    <option key={ index }>{value}</option>
-                ))
-                ): <Spinner animation="border" />}
+              <Form.Select value={buttonEdit ? metodo : null}>
+                {pagamento.map((value, index) =>(
+                  <option key={ index }>{value}</option>
+                ))}
               </Form.Select>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setTag(target.value)}>
-              <Form.Select>
-                {tags ? (
-                  tags.map((value, index) =>(
+              <Form.Select value={buttonEdit ? tag : null}>
+                {tags.map((value, index) =>(
                     <option key={ index }>{value}</option>
-                ))
-                ): <Spinner animation="border" />}
+                ))}
               </Form.Select>
             </Form.Group>
             
             <Form.Group as={Col} controlId="formGridState">
-              <Form.Control type="button" onClick={setValueTable} value='Enviar' />
+              {buttonEdit ? (
+                <Form.Control type="reset" onClick={editTable} value='Alterar' />
+              ): (
+                <Form.Control type="reset" onClick={setValueTable} value='Enviar' />
+              )}
             </Form.Group>
           </Row>
         </Form>

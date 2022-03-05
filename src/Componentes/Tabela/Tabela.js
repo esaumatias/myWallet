@@ -1,15 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '../../Context/AppContext';
 import { Table, Container } from 'react-bootstrap';
 
 function Tabela() {
-  const { tableValues } = useContext(AppContext);
+  const {
+    tableValues,
+    setTableValues,
+    setValor,
+    setDescricao,
+    setMoeda,
+    setMetodo,
+    setTag,
+    buttonEdit,
+    setButtonEdit,
+    setIndexTable,
+    setArrayIndex,
+    indexTable} = useContext(AppContext);
+
+  useEffect(() => {
+    
+  }, [])
+
+  function deleteTable({target}) {
+    const { alt } = target;
+    const values = tableValues.slice();
+    values.splice(alt, 1)
+    setTableValues(values);
+  }
+
+  function editTable({target}) {
+    const { alt } = target;
+    setButtonEdit(!buttonEdit);
+    const values = tableValues.slice();
+    setIndexTable(alt);
+    setArrayIndex(values[alt]);
+    setValor(values[alt].valor);
+    setDescricao(values[alt].descricao);
+    setMoeda(values[alt].moeda);
+    setMetodo(values[alt].metodo);
+    setTag(values[alt].tag);
+  }
+
+
   return (
     <Container>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
             <th>Descrição</th>
             <th>Tag</th>
             <th>Método de pagamento</th>
@@ -24,7 +61,6 @@ function Tabela() {
         <tbody>
           {tableValues.map((value, index) => (
             <tr key={index}>
-              <td>{value.id}</td>
               <td>{value.descricao}</td>
               <td>{value.tag}</td>
               <td>{value.metodo}</td>
@@ -34,11 +70,15 @@ function Tabela() {
               <td>@mdo</td>
               <td>Real</td>
               <td>
-                <button>
-                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt="Editar"/>
+                <button onClick={editTable}>
+                  {indexTable === index ? (
+                    <img src="https://img.icons8.com/fluency/48/000000/cancel.png" alt="Cancel" />
+                  ) : (
+                    <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} />
+                  )}
                 </button>
-                <button>
-                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt='botao excluir'/>
+                <button onClick={deleteTable} >
+                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} />
                 </button>
               </td>
             </tr>

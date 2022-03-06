@@ -22,7 +22,17 @@ function Formulario() {
     indexTable,
     sumConverter,
     currencieAll,
-    setSumConverter} = useContext(AppContext);
+    setSumConverter,
+    sumAlimentacao,
+    setSumAlimentacao,
+    sumSaude,
+    setSumSaude,
+    sumTransporte,
+    setSumTransporte,
+    sumLazer,
+    setSumLazer,
+    sumTrabalho,
+    setSumTrabalho} = useContext(AppContext);
   
   const pagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -35,7 +45,19 @@ function Formulario() {
       metodo,
       tag,
     };
-    
+    if (tag === 'Alimentação') {
+      setSumAlimentacao(sumAlimentacao + valor)
+      console.log('esse');
+    } else if (tag === 'Lazer') {
+      setSumLazer(sumLazer + valor)
+    } else if (tag === 'Transporte') {
+      setSumTransporte(sumTransporte + valor)
+    } else if (tag === 'Saúde') {
+      setSumSaude(sumSaude + valor)
+    } else if (tag === 'Trabalho') {
+      setSumTrabalho(sumTrabalho + valor)
+    }
+
     if (currencieAll) {
       setSumConverter(sumConverter + currencieAll[moeda].ask * valor); 
     }

@@ -16,6 +16,11 @@ function AppProvider({ children }) {
   const [indexTable, setIndexTable] = useState(0);
   const [arrayIndex, setArrayIndex] = useState([]);
   const [sumConverter, setSumConverter] = useState(0);
+  const [sumAlimentacao, setSumAlimentacao] = useState(0);
+  const [sumSaude, setSumSaude] = useState(0);
+  const [sumTransporte, setSumTransporte] = useState(0);
+  const [sumLazer, setSumLazer] = useState(0);
+  const [sumTrabalho, setSumTrabalho] = useState(0);
 
   useEffect(() => {
     requestMoney().then((data) => {
@@ -54,6 +59,16 @@ function AppProvider({ children }) {
         setCurrencieAll,
         sumConverter,
         setSumConverter,
+        sumAlimentacao,
+        setSumAlimentacao,
+        sumSaude,
+        setSumSaude,
+        sumTransporte,
+        setSumTransporte,
+        sumLazer,
+        setSumLazer,
+        sumTrabalho,
+        setSumTrabalho
       }}
     >
       { children }

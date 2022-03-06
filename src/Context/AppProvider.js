@@ -4,6 +4,7 @@ import { requestMoney } from '../Fetch/Fetch';
 
 function AppProvider({ children }) {
   const [currencie, setCurrencie] = useState('');
+  const [currencieAll, setCurrencieAll] = useState([]);
   const [tableValues, setTableValues] = useState([]);
   const [editTable, setEditTable] = useState([]);
   const [valor, setValor] = useState(0);
@@ -14,11 +15,13 @@ function AppProvider({ children }) {
   const [buttonEdit, setButtonEdit] = useState(false);
   const [indexTable, setIndexTable] = useState(0);
   const [arrayIndex, setArrayIndex] = useState([]);
+  const [sumConverter, setSumConverter] = useState(0);
 
   useEffect(() => {
     requestMoney().then((data) => {
       const currencies = Object.keys(data).filter((value) => value !== 'USDT');
       setCurrencie(currencies);
+      setCurrencieAll(data);
     });
   }, [])
 
@@ -46,7 +49,11 @@ function AppProvider({ children }) {
         indexTable,
         setIndexTable,
         arrayIndex,
-        setArrayIndex
+        setArrayIndex,
+        currencieAll,
+        setCurrencieAll,
+        sumConverter,
+        setSumConverter,
       }}
     >
       { children }

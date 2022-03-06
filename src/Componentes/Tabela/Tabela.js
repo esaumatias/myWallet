@@ -14,7 +14,9 @@ function Tabela() {
     buttonEdit,
     setButtonEdit,
     setIndexTable,
-    setArrayIndex} = useContext(AppContext);
+    setArrayIndex,
+    currencieAll,
+    setSumConverter} = useContext(AppContext);
 
   useEffect(() => {
     
@@ -40,7 +42,6 @@ function Tabela() {
     setTag(values[alt].tag);
   }
 
-
   return (
     <Container>
       <Table striped bordered hover>
@@ -65,8 +66,8 @@ function Tabela() {
               <td>{value[0].metodo}</td>
               <td>{value[0].valor}</td>
               <td>{value[0].moeda}</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>{currencieAll ? currencieAll[value[0].moeda].ask : null}</td>
+              <td>{currencieAll ? (currencieAll[value[0].moeda].ask * value[0].valor).toFixed(2) : null}</td>
               <td>Real</td>
               <td>
                 <button onClick={editTable}>

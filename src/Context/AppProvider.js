@@ -6,7 +6,7 @@ function AppProvider({ children }) {
   const [currencie, setCurrencie] = useState('');
   const [tableValues, setTableValues] = useState([]);
   const [editTable, setEditTable] = useState([]);
-  const [valor, setValor] = useState('0');
+  const [valor, setValor] = useState(0);
   const [descricao, setDescricao] = useState('');
   const [moeda, setMoeda] = useState('USD');
   const [metodo, setMetodo] = useState('Dinheiro');

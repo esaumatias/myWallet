@@ -14,8 +14,7 @@ function Tabela() {
     buttonEdit,
     setButtonEdit,
     setIndexTable,
-    setArrayIndex,
-    indexTable} = useContext(AppContext);
+    setArrayIndex} = useContext(AppContext);
 
   useEffect(() => {
     
@@ -61,21 +60,17 @@ function Tabela() {
         <tbody>
           {tableValues.map((value, index) => (
             <tr key={index}>
-              <td>{value.descricao}</td>
-              <td>{value.tag}</td>
-              <td>{value.metodo}</td>
-              <td>{value.valor}</td>
-              <td>{value.moeda}</td>
+              <td>{value[0].descricao}</td>
+              <td>{value[0].tag}</td>
+              <td>{value[0].metodo}</td>
+              <td>{value[0].valor}</td>
+              <td>{value[0].moeda}</td>
               <td>Otto</td>
               <td>@mdo</td>
               <td>Real</td>
               <td>
                 <button onClick={editTable}>
-                  {indexTable === index ? (
-                    <img src="https://img.icons8.com/fluency/48/000000/cancel.png" alt="Cancel" />
-                  ) : (
-                    <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} />
-                  )}
+                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} />
                 </button>
                 <button onClick={deleteTable} >
                   <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} />

@@ -15,8 +15,7 @@ function Tabela() {
     setButtonEdit,
     setIndexTable,
     setArrayIndex,
-    currencieAll,
-    setSumConverter} = useContext(AppContext);
+    currencieAll,} = useContext(AppContext);
 
   useEffect(() => {
     

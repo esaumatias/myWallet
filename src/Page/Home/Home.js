@@ -6,6 +6,7 @@ function Home() {
     <section>
       <h1>Home</h1>
       <Link to='despesa'>Despesa</Link>
+      <Link to='dashboard'>Dashboard</Link>
     </section>
   )
 }

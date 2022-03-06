@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import SideBar from '../../Componentes/SideBar/SideBar';
+import { Card, Row, Col, Container, Spinner } from 'react-bootstrap';
+
 
 function Home() {
   return (
-    <section>
-      <h1>Home</h1>
-      <Link to='despesa'>Despesa</Link>
-      <Link to='dashboard'>Dashboard</Link>
-    </section>
+    <div>
+      <SideBar />
+      
+    </div>
   )
 }
 

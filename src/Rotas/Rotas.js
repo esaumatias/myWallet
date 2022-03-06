@@ -7,9 +7,8 @@ import Dashboard from '../Page/Dashboard/Dashboard';
 function Rotas() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/despesa" component={Despesa} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/Despesas" component={Despesa} />
     </Switch>
   )
 }

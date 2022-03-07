@@ -60,13 +60,13 @@ function Tabela() {
         <tbody>
           {tableValues.map((value, index) => (
             <tr key={index}>
-              <td>{value[0].descricao}</td>
-              <td>{value[0].tag}</td>
-              <td>{value[0].metodo}</td>
-              <td>{value[0].valor}</td>
-              <td>{value[0].moeda}</td>
-              <td>{currencieAll ? currencieAll[value[0].moeda].ask : null}</td>
-              <td>{currencieAll ? (currencieAll[value[0].moeda].ask * value[0].valor).toFixed(2) : null}</td>
+              <td>{value.descricao}</td>
+              <td>{value.tag}</td>
+              <td>{value.metodo}</td>
+              <td>{value.valor}</td>
+              <td>{value.moeda}</td>
+              <td>{currencieAll ? currencieAll[value.moeda].ask : null}</td>
+              <td>{currencieAll ? (currencieAll[value.moeda].ask * value.valor).toFixed(2) : null}</td>
               <td>Real</td>
               <td>
                 <button onClick={editTable}>

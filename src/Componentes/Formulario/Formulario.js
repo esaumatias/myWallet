@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
 import { Form, Row, Col, Container, Spinner } from 'react-bootstrap';
+import './Formulario.css';
 
 function Formulario() {
   const {
@@ -23,16 +24,8 @@ function Formulario() {
     sumConverter,
     currencieAll,
     setSumConverter,
-    sumAlimentacao,
-    setSumAlimentacao,
-    sumSaude,
-    setSumSaude,
-    sumTransporte,
-    setSumTransporte,
-    sumLazer,
-    setSumLazer,
-    sumTrabalho,
-    setSumTrabalho} = useContext(AppContext);
+    setSumTag,
+    sumTags} = useContext(AppContext);
   
   const pagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -45,25 +38,21 @@ function Formulario() {
       metodo,
       tag,
     };
-    if (tag === 'Alimentação') {
-      setSumAlimentacao(sumAlimentacao + valor)
-      console.log('esse');
-    } else if (tag === 'Lazer') {
-      setSumLazer(sumLazer + valor)
-    } else if (tag === 'Transporte') {
-      setSumTransporte(sumTransporte + valor)
-    } else if (tag === 'Saúde') {
-      setSumSaude(sumSaude + valor)
-    } else if (tag === 'Trabalho') {
-      setSumTrabalho(sumTrabalho + valor)
-    }
+  
+    tags.find((name) =>
+      name === tag
+        ? setSumTag((prevState) => {
+            return { ...prevState, [name]: sumTags[name] + parseInt(valor) };
+          })
+        : null
+    );
 
     if (currencieAll) {
       setSumConverter(sumConverter + currencieAll[moeda].ask * valor); 
     }
     
-    setTableValues([...tableValues, [tableArray]]);
-    setValor(1);
+    setTableValues([...tableValues, tableArray]);
+    setValor(0);
     setDescricao('');
     setMoeda('USD');
     setMetodo('Dinheiro');
@@ -77,22 +66,21 @@ function Formulario() {
     setTableValues(values);
   }
 
-  console.log(sumConverter);
-
   return (
     <section>
       <Container>
+        <h1>Despesas</h1>
         <Form>
           <Row>
-           <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setValor(target.value)}>
+           <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setValor(target.value)} id="formGridState">
               <Form.Control type="number" placeholder="Valor" value={buttonEdit ? valor : undefined}/>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setDescricao(target.value)}>
+            <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setDescricao(target.value)} id="formGridState">
               <Form.Control type="text" placeholder="Descrição"  value={buttonEdit ? descricao : undefined}/>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMoeda(target.value)}>
+            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMoeda(target.value)} id="formGridState">
               <Form.Select>
                 {currencie ? (
                   currencie.map((value, index) =>(
@@ -102,7 +90,7 @@ function Formulario() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMetodo(target.value)}>
+            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMetodo(target.value)} id="formGridState">
               <Form.Select>
                 {pagamento.map((value, index) =>(
                   <option key={ index }>{value}</option>
@@ -110,7 +98,7 @@ function Formulario() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setTag(target.value)}>
+            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setTag(target.value)} id="formGridState">
               <Form.Select>
                 {tags.map((value, index) =>(
                     <option key={ index }>{value}</option>
@@ -118,7 +106,7 @@ function Formulario() {
               </Form.Select>
             </Form.Group>
             
-            <Form.Group as={Col} controlId="formGridState">
+            <Form.Group as={Col} controlId="formGridState" id="formGridState">
               {buttonEdit ? (
                 <Form.Control type="reset" onClick={editTable} value='Alterar' />
               ): (

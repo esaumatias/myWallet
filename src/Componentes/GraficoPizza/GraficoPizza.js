@@ -3,19 +3,14 @@ import { PieChart, Pie, Cell } from "recharts";
 import AppContext from '../../Context/AppContext';
 
 function GraficoPizza() {
-  const {  
-    sumAlimentacao,
-    sumSaude,
-    sumTransporte,
-    sumLazer,
-    sumTrabalho,} = useContext(AppContext);
+  const {sumTags} = useContext(AppContext);
   
   const data = [
-    { name: "Alimentação", value: parseInt(sumAlimentacao) },
-    { name: "Saude", value: parseInt(sumSaude) },
-    { name: "Trabalho", value: parseInt(sumTrabalho) },
-    { name: "Lazer", value: parseInt(sumLazer) },
-    { name: "Transporte", value: parseInt(sumTransporte) },
+    { name: "Alimentação", value: sumTags["Alimentação"] },
+    { name: "Saude", value: sumTags["Saude"] },
+    { name: "Trabalho", value: sumTags["Trabalho"] },
+    { name: "Lazer", value: sumTags["Lazer"] },
+    { name: "Transporte", value: sumTags["Transporte"] },
   ];
   
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FB6169"];
@@ -47,14 +42,14 @@ function GraficoPizza() {
     );
   };
   return (
-    <PieChart width={400} height={400}>
+    <PieChart width={200} height={200}>
       <Pie
         data={data}
-        cx={200}
-        cy={200}
+        cx={100}
+        cy={100}
         labelLine={false}
         label={renderCustomizedLabel}
-        outerRadius={80}
+        outerRadius={90}
         fill="#8884d8"
         dataKey="value"
       >

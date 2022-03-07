@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import AppContext from '../../Context/AppContext';
-import { Card, Row, Col, Container, Spinner } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import GraficoPizza from '../../Componentes/GraficoPizza/GraficoPizza';
 
 
@@ -8,6 +8,7 @@ function Dashboard() {
   const { sumConverter } = useContext(AppContext);
   return (
     <Container>
+      <h1>Dashboard</h1>
       <Card
         bg='danger'
         style={{ width: '18rem' }}

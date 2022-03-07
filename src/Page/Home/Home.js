@@ -6,7 +6,6 @@ import { Card, Row, Col, Container, Spinner } from 'react-bootstrap';
 function Home() {
   return (
     <div>
-      <SideBar />
       
     </div>
   )

@@ -15,7 +15,10 @@ function Tabela() {
     setButtonEdit,
     setIndexTable,
     setArrayIndex,
-    currencieAll,} = useContext(AppContext);
+    currencieAll,
+    setSumConverter,
+    sumConverter,
+    moeda} = useContext(AppContext);
 
   useEffect(() => {
     
@@ -24,6 +27,7 @@ function Tabela() {
   function deleteTable({target}) {
     const { alt } = target;
     const values = tableValues.slice();
+    setSumConverter(sumConverter - currencieAll[values[alt]['moeda']].ask * values[alt]['valor']); 
     values.splice(alt, 1)
     setTableValues(values);
   }

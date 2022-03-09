@@ -42,7 +42,7 @@ function Formulario() {
     tags.find((name) =>
       name === tag
         ? setSumTag((prevState) => {
-            return { ...prevState, [name]: sumTags[name] + parseInt(valor) };
+            return { ...prevState, [name]: sumTags[name] + (parseInt(valor) * currencieAll[moeda].ask) };
           })
         : null
     );

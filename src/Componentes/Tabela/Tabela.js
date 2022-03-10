@@ -16,24 +16,26 @@ function Tabela() {
     setIndexTable,
     setArrayIndex,
     currencieAll,
-    setSumConverter,
-    sumConverter,
-    moeda} = useContext(AppContext);
-
-  useEffect(() => {
-    
-  }, [])
-
-  function deleteTable({target}) {
-    const { alt } = target;
+    setValueAtual,
+    setSumTag,
+    sumTags} = useContext(AppContext);
+    const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const values = tableValues.slice();
-    setSumConverter(sumConverter - currencieAll[values[alt]['moeda']].ask * values[alt]['valor']); 
-    values.splice(alt, 1)
+
+  function deleteTable(index, valor, moeda) {
+      tags.find((value) =>
+        value === values[index].tag
+          ? setSumTag((prevState) => {
+              return { ...prevState, [value]: sumTags[value] - (valor * currencieAll[moeda].ask) };
+            })
+          : null
+      );
+    values.splice(index, 1)
     setTableValues(values);
   }
 
   function editTable({target}) {
-    const { alt } = target;
+    const { alt, name } = target;
     setButtonEdit(!buttonEdit);
     const values = tableValues.slice();
     setIndexTable(alt);
@@ -43,6 +45,7 @@ function Tabela() {
     setMoeda(values[alt].moeda);
     setMetodo(values[alt].metodo);
     setTag(values[alt].tag);
+    setValueAtual(name);
   }
 
   return (
@@ -74,10 +77,10 @@ function Tabela() {
               <td>Real</td>
               <td>
                 <button onClick={editTable}>
-                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} />
+                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} name={value.valor} />
                 </button>
-                <button onClick={deleteTable} >
-                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} />
+                <button onClick={() => deleteTable(index, value.valor, value.moeda)}>
+                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} name={value.moeda} />
                 </button>
               </td>
             </tr>

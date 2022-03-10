@@ -21,11 +21,10 @@ function Formulario() {
     buttonEdit,
     setButtonEdit,
     indexTable,
-    sumConverter,
     currencieAll,
-    setSumConverter,
     setSumTag,
-    sumTags} = useContext(AppContext);
+    sumTags,
+    valueAtual} = useContext(AppContext);
   
   const pagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -46,10 +45,6 @@ function Formulario() {
           })
         : null
     );
-
-    if (currencieAll) {
-      setSumConverter(sumConverter + currencieAll[moeda].ask * valor); 
-    }
     
     setTableValues([...tableValues, tableArray]);
     setValor(0);
@@ -62,9 +57,19 @@ function Formulario() {
   function editTable() {
     setButtonEdit(!buttonEdit)
     const values = tableValues.slice();
+
+    tags.find((name) =>
+    name === values[indexTable].tag
+      ? setSumTag((prevState) => {
+          return { ...prevState, [name]: sumTags[name] + ((parseInt(valor) - valueAtual) * currencieAll[moeda].ask) };
+        })
+      : null
+  );
+    
     values[indexTable] = {valor, descricao, moeda, metodo, tag}
     setTableValues(values);
   }
+
 
   return (
     <section>

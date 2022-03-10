@@ -15,7 +15,7 @@ function AppProvider({ children }) {
   const [buttonEdit, setButtonEdit] = useState(false);
   const [indexTable, setIndexTable] = useState(0);
   const [arrayIndex, setArrayIndex] = useState([]);
-  const [sumConverter, setSumConverter] = useState(0);
+  const [valueAtual, setValueAtual] = useState(0);
   const [sumTags, setSumTag] = useState({Alimentação: 0,
     Lazer: 0,
     Trabalho: 0,
@@ -57,10 +57,10 @@ function AppProvider({ children }) {
         setArrayIndex,
         currencieAll,
         setCurrencieAll,
-        sumConverter,
-        setSumConverter,
         sumTags,
-        setSumTag
+        setSumTag,
+        valueAtual,
+        setValueAtual
       }}
     >
       { children }

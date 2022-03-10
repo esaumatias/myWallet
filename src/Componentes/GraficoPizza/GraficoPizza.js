@@ -3,11 +3,11 @@ import { PieChart, Pie, Cell } from "recharts";
 import AppContext from '../../Context/AppContext';
 
 function GraficoPizza() {
-  const {sumTags, tableValues} = useContext(AppContext);
+  const {sumTags} = useContext(AppContext);
   
   const data = [
-    { name: "Alimentação", value: tableValues["Alimentação"] },
-    { name: "Saude", value: sumTags["Saude"] },
+    { name: "Alimentação", value: sumTags["Alimentação"] },
+    { name: "Saúde", value: sumTags["Saúde"] },
     { name: "Trabalho", value: sumTags["Trabalho"] },
     { name: "Lazer", value: sumTags["Lazer"] },
     { name: "Transporte", value: sumTags["Transporte"] },

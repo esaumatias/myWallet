@@ -4,7 +4,7 @@ import Tabela from '../../Componentes/Tabela/Tabela';
 
 function Despesa() {
   return (
-    <section>
+    <section style={{height: '100vh', overflow: 'auto' }}>
       <Formulario />
       <Tabela />
     </section>

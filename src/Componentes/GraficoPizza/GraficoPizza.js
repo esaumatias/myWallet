@@ -13,7 +13,7 @@ function GraficoPizza() {
     { name: "Transporte", value: sumTags["Transporte"] },
   ];
   
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FB6169"];
+  const COLORS = ["#0d6efd", "#0bcaf1", "#188754", "#6c757d", "#ffc108"];
   
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -42,7 +42,7 @@ function GraficoPizza() {
     );
   };
   return (
-    <PieChart width={200} height={200}>
+    <PieChart width={200} height={200} style={{margin: "auto"}}>
       <Pie
         data={data}
         cx={100}

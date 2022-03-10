@@ -23,13 +23,13 @@ function Tabela() {
     const values = tableValues.slice();
 
   function deleteTable(index, valor, moeda) {
-      tags.find((value) =>
-        value === values[index].tag
-          ? setSumTag((prevState) => {
-              return { ...prevState, [value]: sumTags[value] - (valor * currencieAll[moeda].ask) };
-            })
-          : null
-      );
+    tags.find((value) =>
+      value === values[index].tag
+        ? setSumTag((prevState) => {
+            return { ...prevState, [value]: sumTags[value] - (valor * currencieAll[moeda].ask) };
+          })
+        : null
+    );
     values.splice(index, 1)
     setTableValues(values);
   }

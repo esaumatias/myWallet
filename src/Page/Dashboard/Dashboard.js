@@ -19,9 +19,9 @@ function Dashboard() {
       >
         <Card.Header>Despesas</Card.Header>
         <Card.Body>
-          <Card.Title>{(Alimentação + Lazer + Trabalho + Transporte + Saúde).toFixed(2)}</Card.Title>
+          <Card.Title>{`R$ ${(Alimentação + Lazer + Trabalho + Transporte + Saúde).toFixed(2)}`}</Card.Title>
           <Card.Text>
-            Atualizado com base nas entradas das despesas!
+            Atualizado com base nas despesas!
           </Card.Text>
         </Card.Body>
       </Card>

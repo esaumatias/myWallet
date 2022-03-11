@@ -18,8 +18,11 @@ function Tabela() {
     currencieAll,
     setValueAtual,
     setSumTag,
-    sumTags} = useContext(AppContext);
+    sumTags,
+    setMetodoPercentual,
+    metodoPercentual} = useContext(AppContext);
     const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+    const pagamento = ['Dinheiro', 'Crédito', 'Débito'];
     const values = tableValues.slice();
 
   function deleteTable(index, valor, moeda) {
@@ -30,6 +33,14 @@ function Tabela() {
           })
         : null
     );
+    pagamento.find((name) =>
+      name === values[index].metodo
+        ? setMetodoPercentual((prevState) => {
+            return { ...prevState, [name]: metodoPercentual[name] - 1};
+          })
+        : null
+    );
+
     values.splice(index, 1)
     setTableValues(values);
   }

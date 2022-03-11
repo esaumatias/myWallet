@@ -21,6 +21,9 @@ function AppProvider({ children }) {
     Trabalho: 0,
     Transporte: 0,
     Saúde: 0});
+  const [metodoPercentual, setMetodoPercentual] = useState({Dinheiro: 0,
+    Crédito: 0,
+    Débito: 0});
 
   useEffect(() => {
     requestMoney().then((data) => {
@@ -60,7 +63,9 @@ function AppProvider({ children }) {
         sumTags,
         setSumTag,
         valueAtual,
-        setValueAtual
+        setValueAtual,
+        metodoPercentual,
+        setMetodoPercentual
       }}
     >
       { children }

@@ -24,9 +24,11 @@ function Formulario() {
     currencieAll,
     setSumTag,
     sumTags,
-    valueAtual} = useContext(AppContext);
+    valueAtual,
+    metodoPercentual,
+    setMetodoPercentual} = useContext(AppContext);
   
-  const pagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+  const pagamento = ['Dinheiro', 'Crédito', 'Débito'];
   const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
   function setValueTable() {
@@ -38,13 +40,21 @@ function Formulario() {
       tag,
     };
   
-    tags.find((name) =>
-      name === tag
-        ? setSumTag((prevState) => {
-            return { ...prevState, [name]: sumTags[name] + (parseInt(valor) * currencieAll[moeda].ask) };
+    pagamento.find((name) =>
+      name === metodo
+        ? setMetodoPercentual((prevState) => {
+            return { ...prevState, [name]: metodoPercentual[name] + 1};
           })
         : null
     );
+
+    tags.find((name) =>
+    name === tag
+      ? setSumTag((prevState) => {
+          return { ...prevState, [name]: sumTags[name] + (parseInt(valor) * currencieAll[moeda].ask) };
+        })
+      : null
+  );
     
     setTableValues([...tableValues, tableArray]);
     setValor(0);
@@ -70,7 +80,7 @@ function Formulario() {
     setTableValues(values);
   }
 
-
+  console.log(metodoPercentual);
   return (
     <section>
       <Container>

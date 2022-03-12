@@ -5,7 +5,7 @@ import './Login.css';
 
 
 function Home() {
-  const { setIsLooading } = useContext(AppContext);
+  const { setIsLooading, setUserName } = useContext(AppContext);
   return (
     <div className="containerLogin">
       <div className="containerLogo">
@@ -15,7 +15,7 @@ function Home() {
       <Form>
         <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Usuario</Form.Label>
-          <Form.Control type="email" placeholder="Enter usuario" minlength="5" isRequired/>
+          <Form.Control type="email" placeholder="Enter usuario" minlength="5" isRequired onChange={({target}) => setUserName(target.value)}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupPassword">
           <Form.Label>Senha</Form.Label>

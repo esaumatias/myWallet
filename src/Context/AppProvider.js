@@ -17,6 +17,7 @@ function AppProvider({ children }) {
   const [arrayIndex, setArrayIndex] = useState([]);
   const [valueAtual, setValueAtual] = useState(0);
   const [isLooading, setIsLooading] = useState(false);
+  const [userName, setUserName] = useState('');
   const [sumTags, setSumTag] = useState({Alimentação: 0,
     Lazer: 0,
     Trabalho: 0,
@@ -69,6 +70,8 @@ function AppProvider({ children }) {
         setMetodoPercentual,
         isLooading,
         setIsLooading,
+        userName,
+        setUserName,
       }}
     >
       { children }

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
-import { Form, Row, Col, Container, Spinner } from 'react-bootstrap';
+import { Form, Row, Col, Container, Spinner, InputGroup, FormControl, Button } from 'react-bootstrap';
 import './Formulario.css';
 
 function Formulario() {
@@ -80,54 +80,59 @@ function Formulario() {
     setTableValues(values);
   }
 
-  console.log(metodoPercentual);
   return (
     <section>
       <Container>
         <h1>Despesas</h1>
         <Form>
-          <Row>
-           <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setValor(target.value)} id="formGridState">
+          <Row className="align-items-center">
+            <Col sm='auto' className="my-1" onChange={({target}) => setValor(target.value)}>
+              <Form.Label htmlFor="inlineFormInputName" visuallyHidden>
+                Valor
+              </Form.Label>
               <Form.Control type="number" placeholder="Valor" value={buttonEdit ? valor : undefined}/>
-            </Form.Group>
+            </Col>
 
-            <Form.Group as={Col} controlId="formGridState" onChange={({target}) => setDescricao(target.value)} id="formGridState">
+            <Col sm='auto' className="my-1" onChange={({target}) => setDescricao(target.value)}>
+              <Form.Label htmlFor="inlineFormInputName" visuallyHidden>
+                Descrição
+              </Form.Label>
               <Form.Control type="text" placeholder="Descrição"  value={buttonEdit ? descricao : undefined}/>
-            </Form.Group>
+            </Col>
 
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMoeda(target.value)} id="formGridState">
-              <Form.Select>
+            <Col sm='auto' className="my-1">
+              <Form.Select onClick={({target}) => setMoeda(target.value)}>
                 {currencie ? (
                   currencie.map((value, index) =>(
                     <option key={ index }>{value}</option>
                 ))
                 ): <option><Spinner animation="border" /></option>}
               </Form.Select>
-            </Form.Group>
+            </Col>
 
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setMetodo(target.value)} id="formGridState">
-              <Form.Select>
-                {pagamento.map((value, index) =>(
-                  <option key={ index }>{value}</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridState" onClick={({target}) => setTag(target.value)} id="formGridState">
-              <Form.Select>
-                {tags.map((value, index) =>(
+            <Col sm='auto' className="my-1">
+              <Form.Select onClick={({target}) => setMetodo(target.value)}>
+                  {pagamento.map((value, index) =>(
                     <option key={ index }>{value}</option>
-                ))}
+                  ))}
               </Form.Select>
-            </Form.Group>
-            
-            <Form.Group as={Col} controlId="formGridState" id="formGridState">
+            </Col>
+
+            <Col sm='auto' className="my-1">
+              <Form.Select onClick={({target}) => setTag(target.value)}>
+                  {tags.map((value, index) =>(
+                      <option key={ index }>{value}</option>
+                  ))}
+              </Form.Select>
+            </Col>
+
+            <Col xs='auto' className="my-1">
               {buttonEdit ? (
-                <Form.Control type="reset" onClick={editTable} value='Alterar' />
+                <Button type="reset" onClick={editTable}>Alterar</Button>
               ): (
-                <Form.Control type="reset" onClick={setValueTable} value='Enviar' />
+                <Button type="reset" onClick={setValueTable}>Enviar</Button>
               )}
-            </Form.Group>
+            </Col>
           </Row>
         </Form>
       </Container>

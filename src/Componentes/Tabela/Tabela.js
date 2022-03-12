@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
 import { Table, Container } from 'react-bootstrap';
+import './Tabela.css';
 
 function Tabela() {
   const {
@@ -61,43 +62,84 @@ function Tabela() {
 
   return (
     <Container>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableValues.map((value, index) => (
-            <tr key={index}>
-              <td>{value.descricao}</td>
-              <td>{value.tag}</td>
-              <td>{value.metodo}</td>
-              <td>{value.valor}</td>
-              <td>{value.moeda}</td>
-              <td>{currencieAll ? currencieAll[value.moeda].ask : null}</td>
-              <td>{currencieAll ? (currencieAll[value.moeda].ask * value.valor).toFixed(2) : null}</td>
-              <td>Real</td>
-              <td>
-                <button onClick={editTable}>
-                  <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} name={value.valor} />
-                </button>
-                <button onClick={() => deleteTable(index, value.valor, value.moeda)}>
-                  <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} name={value.moeda} />
-                </button>
-              </td>
+      {/* <div class="table-responsive">
+        <Table striped bordered hover class="table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {tableValues.map((value, index) => (
+              <tr key={index}>
+                <td>{value.descricao}</td>
+                <td>{value.tag}</td>
+                <td>{value.metodo}</td>
+                <td>{value.valor}</td>
+                <td>{value.moeda}</td>
+                <td>{currencieAll ? currencieAll[value.moeda].ask : null}</td>
+                <td>{currencieAll ? (currencieAll[value.moeda].ask * value.valor).toFixed(2) : null}</td>
+                <td>Real</td>
+                <td>
+                  <button onClick={editTable}>
+                    <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} name={value.valor} />
+                  </button>
+                  <button onClick={() => deleteTable(index, value.valor, value.moeda)}>
+                    <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} name={value.moeda} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div> */}
+      <div class="table-responsive">
+        <table class="table">
+        <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableValues.map((value, index) => (
+              <tr key={index}>
+                <td>{value.descricao}</td>
+                <td>{value.tag}</td>
+                <td>{value.metodo}</td>
+                <td>{value.valor}</td>
+                <td>{value.moeda}</td>
+                <td>{currencieAll ? currencieAll[value.moeda].ask : null}</td>
+                <td>{currencieAll ? (currencieAll[value.moeda].ask * value.valor).toFixed(2) : null}</td>
+                <td>Real</td>
+                <td>
+                  <button onClick={editTable}>
+                    <img src="https://img.icons8.com/color/48/000000/multi-edit.png" alt={index} name={value.valor} />
+                  </button>
+                  <button onClick={() => deleteTable(index, value.valor, value.moeda)}>
+                    <img src="https://img.icons8.com/color/48/000000/delete.png" alt={index} name={value.moeda} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Container>
   )
 }

@@ -1,4 +1,4 @@
-## Projeto Pokedex
+## Projeto My Wallet
 
 _[Acesse aqui](https://mywallet-taupe.vercel.app/)_
 

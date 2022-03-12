@@ -85,3 +85,13 @@
     width: 100px;
   }
 }
+
+.iconButton {
+  border: none;
+  background: none;
+  text-align: center;
+}
+
+.iconButton img{
+  width: 70%;
+}

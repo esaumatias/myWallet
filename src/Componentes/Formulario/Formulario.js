@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
-import { Form, Row, Col, Container, Spinner, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, Row, Col, Container, Spinner, Button } from 'react-bootstrap';
 import './Formulario.css';
 
 function Formulario() {
